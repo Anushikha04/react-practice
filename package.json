@@ -2,13 +2,19 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "this is react practice",
-  "main": "app.js",
   "scripts": {
     "test": "jest"
   },
   "author": "Anushikha Pansari",
   "license": "ISC",
   "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
     "parcel": "^2.15.4"
-  }
+  },
+  "browserslist":[
+    "last 5 version"
+  ]
 }
