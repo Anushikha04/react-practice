@@ -1,7 +1,6 @@
 import CARD_IMG_URL from "../utils/constants";
 
 const CardComponent = (props) => {
-  console.log(props);
   const {resData} = props;
   const {name, cuisines, costForTwo, avgRating, cloudinaryImageId} = resData.info;
   const {deliveryTime} = resData.info.sla;

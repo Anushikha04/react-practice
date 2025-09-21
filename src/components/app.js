@@ -2,6 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./HeaderComponent";
 import BodyComponent from "./BodyComponent";
+import AboutComponent from "./AboutComponent";
+import ContactComponent from "./ContactComponent";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+import ErrorComponent from "./ErrorComponent";
+import RestarantInfoComponent from "./RestaurantInfoComponent";
 
 // const div = React.createElement("div", { id: "parent" }, [
 //   React.createElement("div", { id: "child" }, [
@@ -57,11 +62,25 @@ const AppLayoutComponent = () => {
   return (
     <div>
       <HeaderComponent />
-      <BodyComponent />
+      <Outlet />
     </div>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayoutComponent />,
+    errorElement: <ErrorComponent />,
+    children: [
+      { path: "/", element: <BodyComponent /> },
+      { path: "/about", element: <AboutComponent /> },
+      { path: "/contact", element: <ContactComponent /> },
+      {path: '/restaurant/:resId', element: <RestarantInfoComponent/>}
+    ],
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(<Newcomp />);
-root.render(<AppLayoutComponent />);
+root.render(<RouterProvider router={appRouter} />);
