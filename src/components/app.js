@@ -1,8 +1,8 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./HeaderComponent";
 import BodyComponent from "./BodyComponent";
-import AboutComponent from "./AboutComponent";
+// import AboutComponent from "./AboutComponent";
 import ContactComponent from "./ContactComponent";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import ErrorComponent from "./ErrorComponent";
@@ -58,6 +58,8 @@ import RestarantInfoComponent from "./RestaurantInfoComponent";
 //   "hello from react"
 // );
 
+const AboutComponent = lazy(() => import('./AboutComponent'))
+
 const AppLayoutComponent = () => {
   return (
     <div>
@@ -74,7 +76,7 @@ const appRouter = createBrowserRouter([
     errorElement: <ErrorComponent />,
     children: [
       { path: "/", element: <BodyComponent /> },
-      { path: "/about", element: <AboutComponent /> },
+      { path: "/about", element: <Suspense fallback={<h1>Loading....</h1>}><AboutComponent/></Suspense> },
       { path: "/contact", element: <ContactComponent /> },
       {path: '/restaurant/:resId', element: <RestarantInfoComponent/>}
     ],

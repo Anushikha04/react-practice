@@ -1,9 +1,11 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const HeaderComponent = () => {
   const [loginBtnName, setLoginBtnName] = useState("Login");
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="header-container">
       <div className="header-logo-container">
@@ -11,6 +13,7 @@ const HeaderComponent = () => {
       </div>
       <div className="header-nav-items">
         <ul>
+          <li>{onlineStatus}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
