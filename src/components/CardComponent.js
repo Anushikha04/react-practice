@@ -1,9 +1,12 @@
 import CARD_IMG_URL from "../utils/constants";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const CardComponent = (props) => {
   const {resData} = props;
   const {name, cuisines, costForTwo, avgRating, cloudinaryImageId} = resData.info;
   const {deliveryTime} = resData.info.sla;
+   const {loggedInUser} = useContext(UserContext)
   return (
     <div className="body-card">
       <img
@@ -16,8 +19,20 @@ const CardComponent = (props) => {
       <h4>{deliveryTime} mins</h4>
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>
+      <h4>user: {loggedInUser}</h4>
     </div>
   );
 };
+
+export const withVegLabel = (CardComponent) => {
+  return (props) => {
+    return (
+      <>
+      <div className="veg-label">veg</div>
+      <CardComponent {...props}/>
+      </>
+    )
+  }
+}
 
 export default CardComponent;

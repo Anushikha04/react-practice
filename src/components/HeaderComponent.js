@@ -1,11 +1,14 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const HeaderComponent = () => {
   const [loginBtnName, setLoginBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+
+  const {loggedInUser} = useContext(UserContext)
   return (
     <div className="header-container">
       <div className="header-logo-container">
@@ -24,6 +27,7 @@ const HeaderComponent = () => {
             <Link to="/contact">Contact</Link>
           </li>
           <li>Cart</li>
+          <li>{loggedInUser}</li>
           <button
             onClick={() => {
               setLoginBtnName(loginBtnName === "Login" ? "Logout" : "Login");

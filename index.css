@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .header-nav-items > ul {
     display: flex;
 }
@@ -44,4 +46,11 @@
     padding: 5px;
     background-color: #f0f0f0;
     height: 300px;
+}
+
+.veg-label {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    margin: 8px;
 }
