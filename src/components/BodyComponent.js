@@ -23,22 +23,24 @@ const BodyComponent = () => {
   
   return resData.length === 0 ? <ShimmerComponent/> :  (
     <div className="body">
-      <div className="search">
-        <input type="text" value={searchText} onChange={(e) => {
+      <div className="flex items-center">
+        <div className="search">
+        <input className="border border-black" type="text" value={searchText} onChange={(e) => {
           setSearchText(e.target.value);
         }}/>
-        <button onClick={() => {
+        <button className="bg-green-100 px-4 m-2" onClick={() => {
           const filteredRestaurants = resData.filter(res => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
           setFilteredRes(filteredRestaurants);
         }}>Search</button>
       </div>
       <div>
-        <button onClick={() => {
+        <button className="bg-gray-200 px-3 m-2" onClick={() => {
           const filteredRestaurants = resData.filter(res => res.info.avgRating > 4);
           setResData(filteredRestaurants);
         }}>top rated restaurants</button>
       </div>
-      <div className="body-cards-container">
+      </div>
+      <div className="body-cards-container flex flex-wrap">
         {filteredRes.map(res => {
           return <Link key={res.info.id} to={'/restaurant/'+res.info.id}>{res.info.veg ? <VegCardComponent resData={res}/> : <CardComponent resData={res}/>}</Link>
         })}

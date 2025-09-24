@@ -10,24 +10,24 @@ const HeaderComponent = () => {
 
   const {loggedInUser} = useContext(UserContext)
   return (
-    <div className="header-container">
+    <div className="header-container flex justify-between shadow-lg items-center bg-green-50">
       <div className="header-logo-container">
-        <img className="header-logo" alt="logo" src={LOGO_URL} />
+        <img className="header-logo w-40" alt="logo" src={LOGO_URL} />
       </div>
       <div className="header-nav-items">
-        <ul>
-          <li>{onlineStatus}</li>
-          <li>
+        <ul className="flex">
+          <li className="px-4">{onlineStatus}</li>
+          <li className="px-4">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/about">About us</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>Cart</li>
-          <li>{loggedInUser}</li>
+          <li className="px-4">Cart</li>
+          <li className="px-4">{loggedInUser}</li>
           <button
             onClick={() => {
               setLoginBtnName(loginBtnName === "Login" ? "Logout" : "Login");

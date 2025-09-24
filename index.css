@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.header-nav-items > ul {
+/* .header-nav-items > ul {
     display: flex;
 }
 .header-nav-items > ul > li {
@@ -53,4 +53,4 @@
     color: white;
     padding: 8px;
     margin: 8px;
-}
+} */
