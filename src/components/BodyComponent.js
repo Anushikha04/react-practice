@@ -11,9 +11,6 @@ const BodyComponent = () => {
   const [searchText, setSearchText] = useState("");
   const {resData, setResData, filteredRes, setFilteredRes} = useRestaurantData();
   const onlineStatus = useOnlineStatus();
- 
-
-  console.log(filteredRes)
 
   const VegCardComponent = withVegLabel(CardComponent);
 

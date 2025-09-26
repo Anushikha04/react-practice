@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import appStore from "../utils/redux/appStore";
 import HeaderComponent from "./HeaderComponent";
 import BodyComponent from "./BodyComponent";
 // import AboutComponent from "./AboutComponent";
@@ -7,6 +9,7 @@ import ContactComponent from "./ContactComponent";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import ErrorComponent from "./ErrorComponent";
 import RestarantInfoComponent from "./RestaurantInfoComponent";
+import CartComponent from "./CartComponent";
 
 // const div = React.createElement("div", { id: "parent" }, [
 //   React.createElement("div", { id: "child" }, [
@@ -58,14 +61,16 @@ import RestarantInfoComponent from "./RestaurantInfoComponent";
 //   "hello from react"
 // );
 
-const AboutComponent = lazy(() => import('./AboutComponent'))
+const AboutComponent = lazy(() => import("./AboutComponent"));
 
 const AppLayoutComponent = () => {
   return (
-    <div>
-      <HeaderComponent />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div>
+        <HeaderComponent />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
@@ -76,9 +81,17 @@ const appRouter = createBrowserRouter([
     errorElement: <ErrorComponent />,
     children: [
       { path: "/", element: <BodyComponent /> },
-      { path: "/about", element: <Suspense fallback={<h1>Loading....</h1>}><AboutComponent/></Suspense> },
+      {
+        path: "/about",
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <AboutComponent />
+          </Suspense>
+        ),
+      },
       { path: "/contact", element: <ContactComponent /> },
-      {path: '/restaurant/:resId', element: <RestarantInfoComponent/>}
+      { path: "/restaurant/:resId", element: <RestarantInfoComponent /> },
+      {path: '/cart',element: <CartComponent/>}
     ],
   },
 ]);

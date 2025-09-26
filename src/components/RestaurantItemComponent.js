@@ -12,7 +12,6 @@ const RestaurantItemComponent = ({
     // setShowItems(!showItems);
     setShowIndex();
     setShowItem();
-    console.log(showItems);
   };
   return (
     <div>
